@@ -10,10 +10,11 @@ using namespace std;
 class Travelcard
 {
 private:
-	string cardOwner;
-	float balance;
+	string *cardOwner;
+	float *balance;
 public:
 	Travelcard();
+	~Travelcard();
 	void registerCard(string& owner);
 	bool travel(Matkatyyppi tyyppi);		// VOI TESTATA if (tyyppi == HELSINKI)
 	float chargeCard(float amount);

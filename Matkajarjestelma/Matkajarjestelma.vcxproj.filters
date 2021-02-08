@@ -36,6 +36,9 @@
     <ClInclude Include="Matkajarjestelma.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Travelcardreader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -51,6 +54,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Travelcard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Travelcardreader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

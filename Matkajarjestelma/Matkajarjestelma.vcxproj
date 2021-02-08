@@ -87,6 +87,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Travelcard.h" />
+    <ClInclude Include="Travelcardreader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gotoxy.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="Matkajarjestelma.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Travelcard.cpp" />
+    <ClCompile Include="Travelcardreader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

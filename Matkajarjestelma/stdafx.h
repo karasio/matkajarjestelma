@@ -13,10 +13,11 @@
 #include <string>
 #include <sstream>
 #include <Windows.h>
-
+#include <time.h>
 
 #include "IOHelper.h"
 #include "gotoxy.h"
 
 #include "Travelcard.h"
+#include "Travelcardreader.h"
 // TODO: reference additional headers your program requires here

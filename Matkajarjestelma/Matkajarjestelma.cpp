@@ -9,10 +9,12 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+	int indent = 36;
 	int c;
 	string row;
 	float money;
 	Travelcard card;
+	Travelcardreader reader;
 
 	do
 	{
@@ -20,26 +22,29 @@ int main(int argc, char* argv[])
 		cout <<"-------------------Matkakortin testausvalikko--------------------";
 		cout <<"\n\n";
 		cout << "\tAlusta matkakortti";
-		gotoxy(32,2);
+		gotoxy(indent,2);
 		cout << "1\n";
 		cout << "\tLataa matkakortti";
-		gotoxy(32, 3);
+		gotoxy(indent, 3);
 		cout << "2\n";
 		cout << "\tMatkusta Helsingissä";
-		gotoxy(32, 4);
+		gotoxy(indent, 4);
 		cout << "3\n";
 		cout << "\tMatkusta seudulla";
-		gotoxy(32, 5);
+		gotoxy(indent, 5);
 		cout << "4\n";
 		cout << "\tTulosta kortin tiedot";
-		gotoxy(32, 6);
+		gotoxy(indent, 6);
 		cout << "5\n";
-		cout << "\tLopeta";
-		gotoxy(32, 7);
+		cout << "\tTulosta leimaajan tiedot";
+		gotoxy(indent, 7);
 		cout << "6\n";
-		gotoxy(8,9);
+		cout << "\tLopeta";
+		gotoxy(indent, 8);
+		cout << "7\n";
+		gotoxy(8,10);
 		cout << "Valintasi:";
-		gotoxy(32, 9);
+		gotoxy(indent, 10);
 		c=getIntFromStream();
 		cout << "\n";
 		switch (c)
@@ -52,11 +57,11 @@ int main(int argc, char* argv[])
 			case 2:
 				cout << "Anna lisättävä saldo: ";
 				money = getFloatFromStream();
-				card.chargeCard(money);
+				cout << "Kortin saldo: " << card.chargeCard(money) << "e";
 				break;
 			case 3:
 				cout << "Matkan hinta: " << HELSINKIPRICE << "e\n";
-				if (card.travel(HELSINKI))
+				if (reader.handleTravel(card, HELSINKI))
 				{
 					cout << "Hyvää matkaa!\n";
 					cout << "Kortin saldo: " << card.getBalance() << "e\n";
@@ -69,7 +74,7 @@ int main(int argc, char* argv[])
 				break;
 			case 4:
 				cout << "Matkan hinta: " << SEUTUPRICE << "e\n";
-				if (card.travel(SEUTU))
+				if (reader.handleTravel(card, SEUTU))
 				{
 					cout << "Hyvää matkaa!\n";
 					cout << "Kortin saldo: " << card.getBalance() << "e\n";
@@ -81,18 +86,21 @@ int main(int argc, char* argv[])
 				cin.get();
 				break;
 			case 5:
-				cout << "Kortin tiedot: \n";
+				cout << "KORTIN TIEDOT: \n";
 				cout << "Nimi: " << card.getCardOwner() << "\n";
 				cout << "Saldo: " << card.getBalance() << "e\n";
-
 				cin.get();
 				break;
 			case 6:
+				reader.printTime();
+				cin.get();
+				break;
+			case 7:
 				cout << "Kiitos näkemiin!";
 				break;
 		}
 	}
-	while (c!=6);
+	while (c!=7);
 	return 0;
 }
 

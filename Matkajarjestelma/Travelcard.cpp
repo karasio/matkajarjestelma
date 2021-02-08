@@ -8,6 +8,10 @@ Travelcard::Travelcard()
 	balance = new float(0.0);
 }
 
+Travelcard::Travelcard(const Travelcard& toBeCopied)
+{
+}
+
 Travelcard::~Travelcard()
 {
 	delete cardOwner;
@@ -20,7 +24,7 @@ void Travelcard::registerCard(string &owner)
 	*balance = 0;
 }
 
-bool Travelcard::travel(Matkatyyppi type)
+bool Travelcard::travel(Traveltype type)
 {
 	bool success = false;
 	float price = HELSINKIPRICE;
@@ -38,7 +42,7 @@ bool Travelcard::travel(Matkatyyppi type)
 float Travelcard::chargeCard(float amount)
 {
 	*balance += amount;
-	return amount;
+	return *balance;
 }
 
 string& Travelcard::getCardOwner()

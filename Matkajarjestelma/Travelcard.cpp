@@ -4,12 +4,19 @@ using namespace std;
 
 Travelcard::Travelcard()
 {
+	std::cout << "NORMAL CONSTUCTOR\n";
 	cardOwner = new string("Haltijakohtainen kortti");
 	balance = new float(0.0);
 }
 
+// tämä edelleen päin helvettiä, koska arvot mitä cardOwner & balancesta
+// kopioidaan on viitteitä, jotka tuhoutuu sen jälkeen kun tullaan handleTravelista
+// ulos
 Travelcard::Travelcard(const Travelcard& toBeCopied)
 {
+	std::cout << "COPY CONSTUCTOR\n";
+	cardOwner = new string(*(toBeCopied.cardOwner));
+	balance = new float(*(toBeCopied.balance));
 }
 
 Travelcard::~Travelcard()
@@ -34,6 +41,7 @@ bool Travelcard::travel(Traveltype type)
 
 	if (*balance >= price) {
 		*balance -= price;
+		std::cout << "Travelcard::travel - balance = " << *balance << "\n";
 		success = true;
 	}
 	return success;

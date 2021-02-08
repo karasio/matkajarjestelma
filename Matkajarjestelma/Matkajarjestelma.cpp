@@ -18,33 +18,30 @@ int main(int argc, char* argv[])
 
 	do
 	{
-		system("cls");
-		cout <<"-------------------Matkakortin testausvalikko--------------------";
+		cout <<"\n-------------------Matkakortin testausvalikko--------------------";
 		cout <<"\n\n";
 		cout << "\tAlusta matkakortti";
-		gotoxy(indent,2);
-		cout << "1\n";
+		cout << "\t\t\t\t1\n";
 		cout << "\tLataa matkakortti";
-		gotoxy(indent, 3);
-		cout << "2\n";
+		cout << "\t\t\t\t2\n";
 		cout << "\tMatkusta Helsingissä";
-		gotoxy(indent, 4);
-		cout << "3\n";
+		//gotoxy(indent, 4);
+		cout << "\t\t\t\t3\n";
 		cout << "\tMatkusta seudulla";
-		gotoxy(indent, 5);
-		cout << "4\n";
+		//gotoxy(indent, 5);
+		cout << "\t\t\t\t4\n";
 		cout << "\tTulosta kortin tiedot";
-		gotoxy(indent, 6);
-		cout << "5\n";
+		//gotoxy(indent, 6);
+		cout << "\t\t\t\t5\n";
 		cout << "\tTulosta leimaajan tiedot";
-		gotoxy(indent, 7);
-		cout << "6\n";
+		//gotoxy(indent, 7);
+		cout << "\t\t\t6\n";
 		cout << "\tLopeta";
-		gotoxy(indent, 8);
-		cout << "7\n";
-		gotoxy(8,10);
-		cout << "Valintasi:";
-		gotoxy(indent, 10);
+		//gotoxy(indent, 8);
+		cout << "\t\t\t\t\t\t7\n";
+		//gotoxy(8,10);
+		cout << "\n\tValintasi:";
+		//gotoxy(indent, 10);
 		c=getIntFromStream();
 		cout << "\n";
 		switch (c)
@@ -61,10 +58,11 @@ int main(int argc, char* argv[])
 				break;
 			case 3:
 				cout << "Matkan hinta: " << HELSINKIPRICE << "e\n";
+				cout << "Main: card @: " << &card << "\n";
 				if (reader.handleTravel(card, HELSINKI))
 				{
 					cout << "Hyvää matkaa!\n";
-					cout << "Kortin saldo: " << card.getBalance() << "e\n";
+					cout << "Kortin saldo: " << card.getBalance() << "e @" << &card << "\n";
 				}
 				else {
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
@@ -77,7 +75,7 @@ int main(int argc, char* argv[])
 				if (reader.handleTravel(card, SEUTU))
 				{
 					cout << "Hyvää matkaa!\n";
-					cout << "Kortin saldo: " << card.getBalance() << "e\n";
+					cout << "Kortin saldo: " << card.getBalance() << "e @" << &card << "\n";
 				}
 				else {
 					cout << "Kortilla ei ole riittävästi saldoa.\n";

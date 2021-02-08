@@ -14,7 +14,7 @@ private:
 	float *balance;
 public:
 	Travelcard();
-	// teht10: kirjoita kopiointikonstruktori
+	Travelcard(const Travelcard &toBeCopied);
 	~Travelcard();
 	void registerCard(string& owner);
 	bool travel(Traveltype tyyppi);		// VOI TESTATA if (tyyppi == HELSINKI)

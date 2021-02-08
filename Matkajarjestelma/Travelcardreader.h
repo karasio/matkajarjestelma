@@ -11,7 +11,7 @@ private:
 	string route;
 public:
 	Travelcardreader();
-	bool handleTravel(Travelcard& card, Traveltype type);
+	bool handleTravel(Travelcard card, Traveltype type);
 	string getLastUser();
 	string getRoute();
 	void printTime();

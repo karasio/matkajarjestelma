@@ -4,7 +4,7 @@ using namespace std;
 
 Travelcard::Travelcard()
 {
-	std::cout << "NORMAL CONSTUCTOR\n";
+	//std::cout << "NORMAL CONSTUCTOR\n";
 	cardOwner = new string("Haltijakohtainen kortti");
 	balance = new float(0.0);
 }
@@ -14,9 +14,11 @@ Travelcard::Travelcard()
 // ulos
 Travelcard::Travelcard(const Travelcard& toBeCopied)
 {
-	std::cout << "COPY CONSTUCTOR\n";
+	//std::cout << "COPY CONSTUCTOR @"<< this << "\n";
+	//std::cout << "toBeCopied balance " << *(toBeCopied.balance) << "\n";
 	cardOwner = new string(*(toBeCopied.cardOwner));
 	balance = new float(*(toBeCopied.balance));
+	//std::cout << "this balance " << *balance << "\n";
 }
 
 Travelcard::~Travelcard()
@@ -41,7 +43,7 @@ bool Travelcard::travel(Traveltype type)
 
 	if (*balance >= price) {
 		*balance -= price;
-		std::cout << "Travelcard::travel - balance = " << *balance << "\n";
+		std::cout << "Saldo kortin travel-metodissa = " << *balance << "\n";
 		success = true;
 	}
 	return success;

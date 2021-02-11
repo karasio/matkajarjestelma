@@ -17,7 +17,7 @@ public:
 	Travelcard(const Travelcard &toBeCopied);
 	~Travelcard();
 	void registerCard(string& owner);
-	bool travel(Traveltype tyyppi);		// VOI TESTATA if (tyyppi == HELSINKI)
+	bool travel(Traveltype type);		// VOI TESTATA if (tyyppi == HELSINKI)
 	float chargeCard(float amount);
 	// void printCard();	// pulma: sovelluskerros Matkakortti tulee riippuvaiseksi UI:sta
 	string& getCardOwner();

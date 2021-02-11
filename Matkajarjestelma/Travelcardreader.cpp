@@ -8,15 +8,19 @@ Travelcardreader::Travelcardreader()
 
 bool Travelcardreader::handleTravel(Travelcard card, Traveltype type)
 {
-	cout << "TravelcardReader: card @: " << &card << "\n";
+	//cout << "TravelcardReader :: 1 : card @ " << &card << "\n";
 	if (card.travel(type)) {
 		lastUser = card.getCardOwner();
 		time_t seconds;
 		time(&seconds);
 		localtime_s(&lastTimestamp, &seconds);
-		cout << "TravelcardReader::handleTravel - balance = " << card.getBalance() << "\n";
+		//cout << "TravelcardReader::handleTravel - balance = " << card.getBalance() << "\n";
+		//cout << "TravelcardReader :: 2: card @ " << &card << "\n";
+		std::cout << "Saldo leimaajan handleTravel-metodissa = " << card.getBalance() << "\n";
 		return true;
-	} 
+	}
+	std::cout << "Saldo leimaajan handleTravel-metodissa = " << card.getBalance() << "\n";
+	//cout << "TravelcardReader :: 2: card @ " << &card << "\n";
 	return false;
 }
 

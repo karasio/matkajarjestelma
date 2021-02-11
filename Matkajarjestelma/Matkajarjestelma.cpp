@@ -58,16 +58,15 @@ int main(int argc, char* argv[])
 				break;
 			case 3:
 				cout << "Matkan hinta: " << HELSINKIPRICE << "e\n";
-				cout << "Main: card @: " << &card << "\n";
+				//cout << "Main: card @: " << &card << "\n";
 				if (reader.handleTravel(card, HELSINKI))
 				{
 					cout << "Hyvää matkaa!\n";
-					cout << "Kortin saldo: " << card.getBalance() << "e @" << &card << "\n";
 				}
 				else {
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
-					cout << "Kortin saldo: " << card.getBalance() << "e\n";
 				}
+				cout << "Kortin saldo: " << card.getBalance() << "\n";
 				cin.get();
 				break;
 			case 4:
@@ -75,12 +74,11 @@ int main(int argc, char* argv[])
 				if (reader.handleTravel(card, SEUTU))
 				{
 					cout << "Hyvää matkaa!\n";
-					cout << "Kortin saldo: " << card.getBalance() << "e @" << &card << "\n";
 				}
 				else {
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
-					cout << "Kortin saldo: " << card.getBalance() << "e\n";
 				}
+				cout << "Kortin saldo: " << card.getBalance() << "\n";
 				cin.get();
 				break;
 			case 5:

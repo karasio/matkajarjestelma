@@ -12,5 +12,6 @@ public:
 	TravelEvent(string &name, struct tm &timestamp);
 	~TravelEvent();
 	void print(int row);
+	string getEventString();
 };
 

@@ -13,7 +13,8 @@ int main(int argc, char* argv[])
 	int c;
 	string row;
 	float money;
-	shared_ptr<Travelcard> card(new Travelcard);
+	//shared_ptr<Travelcard> card(new Travelcard);
+	Travelcard card;
 	Travelcardreader reader;
 
 	do
@@ -49,12 +50,12 @@ int main(int argc, char* argv[])
 			case 1:
 				cout << "Anna kortin omistajan nimi: ";
 				getline(cin, row);
-				card->registerCard(row);
+				card.registerCard(row);
 				break;
 			case 2:
 				cout << "Anna lisättävä saldo: ";
 				money = getFloatFromStream();
-				cout << "Kortin saldo: " << card->chargeCard(money) << "e";
+				cout << "Kortin saldo: " << card.chargeCard(money) << "e";
 				break;
 			case 3:
 				cout << "Matkan hinta: " << HELSINKIPRICE << "e\n";
@@ -67,7 +68,7 @@ int main(int argc, char* argv[])
 				{
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
-				cout << "Kortin saldo: " << card->getBalance() << "\n";
+				cout << "Kortin saldo: " << card.getBalance() << "\n";
 				cin.get();
 				break;
 			case 4:
@@ -80,17 +81,16 @@ int main(int argc, char* argv[])
 				{
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
-				cout << "Kortin saldo: " << card->getBalance() << "\n";
+				cout << "Kortin saldo: " << card.getBalance() << "\n";
 				cin.get();
 				break;
 			case 5:
-				cout << "KORTIN TIEDOT: \n";
-				cout << "Nimi: " << card->getCardOwner() << "\n";
-				cout << "Saldo: " << card->getBalance() << "e\n";
+				cout << card;
 				cin.get();
 				break;
 			case 6:
-				reader.print();
+				//reader.print();
+				cout << reader;
 				cin.get();
 				break;
 			case 7:

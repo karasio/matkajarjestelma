@@ -22,16 +22,16 @@ Travelcardreader::~Travelcardreader()
 	}
 }
 
-bool Travelcardreader::handleTravel(shared_ptr<Travelcard> card, Traveltype type)
+bool Travelcardreader::handleTravel(Travelcard& card, Traveltype type)
 {
-	if (card->travel(type))
+	if (card.travel(type))
 	{
 		TravelEvent* newEvent;
 		struct tm timestamp;
 		time_t seconds;
 		time(&seconds);
 		localtime_s(&timestamp, &seconds);
-		newEvent = new TravelEvent(card->getCardOwner(), timestamp);
+		newEvent = new TravelEvent(card.getCardOwner(), timestamp);
 		delete events[eventAmount % MAX];
 		events[eventAmount % MAX] = newEvent;
 		eventAmount++;
@@ -40,14 +40,40 @@ bool Travelcardreader::handleTravel(shared_ptr<Travelcard> card, Traveltype type
 	return false;
 }
 
-bool Travelcardreader::operator<<(shared_ptr<Travelcard> card)
+string Travelcardreader::getRouteName()
+{
+	return routeName;
+}
+
+bool Travelcardreader::operator<<(Travelcard& card)
 {
 	return handleTravel(card, HELSINKI);
 }
 
-bool Travelcardreader::operator>>(shared_ptr<Travelcard> card)
+bool Travelcardreader::operator>>(Travelcard& card)
 {
 	return handleTravel(card, SEUTU);
+}
+
+ostream& operator<<(ostream& out, const Travelcardreader& reader)
+{
+	bool isAllNull = true;
+	out << reader.routeName  << '\n';
+	string travelEventString;
+
+	for (int i = 0; i < reader.MAX; i++)
+	{
+		if (reader.events[i] != NULL) {
+			out << reader.events[i]->getEventString();
+			isAllNull = false;
+		}
+
+		if (i == (reader.MAX - 1) && isAllNull)
+		{
+			out << "Ei leimaustietoja\n";
+		}
+	}
+	return out;
 }
 
 void Travelcardreader::print()

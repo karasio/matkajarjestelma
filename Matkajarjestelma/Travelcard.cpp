@@ -55,3 +55,10 @@ float Travelcard::getBalance()
 {
 	return *balance;
 }
+
+ostream& operator<<(ostream &out, const Travelcard &card)
+{
+	out << "Kortin tiedot: \nNimi: " << *card.cardOwner
+		<< "\nSaldo: " << *card.balance << "e\n";
+	return out;
+}

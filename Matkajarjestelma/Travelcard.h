@@ -21,4 +21,5 @@ public:
 	// void printCard();	// pulma: sovelluskerros Matkakortti tulee riippuvaiseksi UI:sta
 	string& getCardOwner();
 	float getBalance();
+	friend ostream& operator<<(ostream &out, const Travelcard &card);
 };

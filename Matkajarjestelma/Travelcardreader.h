@@ -16,9 +16,11 @@ public:
 	int MAX;
 	Travelcardreader();
 	~Travelcardreader();
-	bool handleTravel(shared_ptr<Travelcard> card, Traveltype type);
+	bool handleTravel(Travelcard &card, Traveltype type);
+	string getRouteName();
 	void print();
-	bool operator<<(shared_ptr<Travelcard> card);
-	bool operator>>(shared_ptr<Travelcard> card);
+	bool operator<<(Travelcard& card);
+	bool operator>>(Travelcard& card);
+	friend ostream& operator<<(ostream& out, const Travelcardreader& reader);
 };
 

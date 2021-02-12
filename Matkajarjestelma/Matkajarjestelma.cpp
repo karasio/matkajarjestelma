@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 			case 3:
 				cout << "Matkan hinta: " << HELSINKIPRICE << "e\n";
 				//cout << "Main: card @: " << &card << "\n";
-				if (reader.handleTravel(card, HELSINKI))
+				if (reader << card)
 				{
 					cout << "Hyvää matkaa!\n";
 				}
@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
 				break;
 			case 4:
 				cout << "Matkan hinta: " << SEUTUPRICE << "e\n";
-				if (reader.handleTravel(card, SEUTU))
+				if (reader >> card)
 				{
 					cout << "Hyvää matkaa!\n";
 				}

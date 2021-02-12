@@ -40,6 +40,16 @@ bool Travelcardreader::handleTravel(shared_ptr<Travelcard> card, Traveltype type
 	return false;
 }
 
+bool Travelcardreader::operator<<(shared_ptr<Travelcard> card)
+{
+	return handleTravel(card, HELSINKI);
+}
+
+bool Travelcardreader::operator>>(shared_ptr<Travelcard> card)
+{
+	return handleTravel(card, SEUTU);
+}
+
 void Travelcardreader::print()
 {
 	bool isAllNull = true;

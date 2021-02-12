@@ -63,7 +63,8 @@ int main(int argc, char* argv[])
 				{
 					cout << "Hyvää matkaa!\n";
 				}
-				else {
+				else
+				{
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
 				cout << "Kortin saldo: " << card->getBalance() << "\n";
@@ -75,7 +76,8 @@ int main(int argc, char* argv[])
 				{
 					cout << "Hyvää matkaa!\n";
 				}
-				else {
+				else 
+				{
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
 				cout << "Kortin saldo: " << card->getBalance() << "\n";
@@ -88,7 +90,7 @@ int main(int argc, char* argv[])
 				cin.get();
 				break;
 			case 6:
-				reader.printTime();
+				reader.print();
 				cin.get();
 				break;
 			case 7:

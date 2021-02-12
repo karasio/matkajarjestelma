@@ -3,39 +3,57 @@ using namespace std;
 
 Travelcardreader::Travelcardreader()
 {
-	// generoi reitille tunnus leimaajan luontihetkellä
+	cout << "Minkä linjan matkoja leimataan?\t";
+	getline(cin, routeName);
+	eventAmount = 0;
+	MAX = 5;
+	events.resize(MAX);
+	for (int i = 0; i < MAX; i++)
+	{
+		events[i] = NULL;
+	}
+}
+
+Travelcardreader::~Travelcardreader()
+{
+	for (int i = 0; i < MAX; i++)
+	{
+		delete events[i];
+	}
 }
 
 bool Travelcardreader::handleTravel(shared_ptr<Travelcard> card, Traveltype type)
 {
-	//cout << "TravelcardReader :: 1 : card @ " << &card << "\n";
-	if (card->travel(type)) {
-		lastUser = card->getCardOwner();
+	if (card->travel(type))
+	{
+		TravelEvent* newEvent;
+		struct tm timestamp;
 		time_t seconds;
 		time(&seconds);
-		localtime_s(&lastTimestamp, &seconds);
-		//cout << "TravelcardReader::handleTravel - balance = " << card.getBalance() << "\n";
-		//cout << "TravelcardReader :: 2: card @ " << &card << "\n";
+		localtime_s(&timestamp, &seconds);
+		newEvent = new TravelEvent(card->getCardOwner(), timestamp);
+		delete events[eventAmount % MAX];
+		events[eventAmount % MAX] = newEvent;
+		eventAmount++;
 		return true;
 	}
-	//cout << "TravelcardReader :: 2: card @ " << &card << "\n";
 	return false;
 }
 
-string Travelcardreader::getLastUser()
+void Travelcardreader::print()
 {
-	return lastUser;
-}
-
-string Travelcardreader::getRoute()
-{
-	return route;
-}
-
-void Travelcardreader::printTime()
-{
-	cout << "VIIMEISIN LEIMAUS: \n";
-	cout << "Viimeisin leimaaja: " << lastUser << "\n";
-	cout << "Viimeisin matka: ";
-	cout << lastTimestamp.tm_hour << ":" << lastTimestamp.tm_min << ":" << lastTimestamp.tm_sec;
+	bool isAllNull = true;
+	cout << "Linja " << routeName << "\n";
+	for (int i = 0; i < MAX; i++)
+	{
+		if (events[i] != NULL)
+		{
+			events[i]->print(i);
+			isAllNull = false;
+		}
+		if (i == (MAX-1) && isAllNull)
+		{
+			cout << "Ei leimaustietoja\n";
+		}
+	}
 }

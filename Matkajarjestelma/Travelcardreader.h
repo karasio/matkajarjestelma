@@ -1,19 +1,22 @@
 #pragma once
 #include "stdafx.h"
+
 using namespace std;
+
 class Travelcard; // forward-m‰‰rittely, tarpeen jos kaksi luokkaa viittaavat toisiinsa
+class TravelEvent;
 
 class Travelcardreader
 {
 private:
-	string lastUser;
-	struct tm lastTimestamp;
-	string route;
+	vector<TravelEvent *> events;
+	string routeName;
+	int eventAmount;
 public:
+	int MAX;
 	Travelcardreader();
+	~Travelcardreader();
 	bool handleTravel(shared_ptr<Travelcard> card, Traveltype type);
-	string getLastUser();
-	string getRoute();
-	void printTime();
+	void print();
 };
 

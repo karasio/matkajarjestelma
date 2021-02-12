@@ -15,10 +15,13 @@
 #include <Windows.h>
 #include <time.h>
 #include <memory>
+#include <vector>
+#include <iomanip>
 
 #include "IOHelper.h"
 #include "gotoxy.h"
 
 #include "Travelcard.h"
 #include "Travelcardreader.h"
+#include "TravelEvent.h"
 // TODO: reference additional headers your program requires here

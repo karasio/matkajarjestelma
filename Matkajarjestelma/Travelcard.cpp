@@ -12,17 +12,17 @@ Travelcard::Travelcard()
 
 Travelcard::~Travelcard()
 {
-	cout << "Travelcard - Destructor - delete commands as comment!";
+	cout << "Travelcard - Destructor";
 	//delete cardOwner;
 	//delete balance;
 }
 
 void Travelcard::registerCard(string &owner)
 {
-	//cardOwner.reset(new string(owner));
-	//balance.reset(new float(0.0));
-	*cardOwner = owner;
-	*balance = 0;
+	cardOwner.reset(new string(owner));
+	balance.reset(new float(0.0));
+	//*cardOwner = owner;
+	//*balance = 0;
 }
 
 bool Travelcard::travel(Traveltype type)

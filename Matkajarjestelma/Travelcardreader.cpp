@@ -6,20 +6,18 @@ Travelcardreader::Travelcardreader()
 	// generoi reitille tunnus leimaajan luontihetkellä
 }
 
-bool Travelcardreader::handleTravel(Travelcard card, Traveltype type)
+bool Travelcardreader::handleTravel(shared_ptr<Travelcard> card, Traveltype type)
 {
 	//cout << "TravelcardReader :: 1 : card @ " << &card << "\n";
-	if (card.travel(type)) {
-		lastUser = card.getCardOwner();
+	if (card->travel(type)) {
+		lastUser = card->getCardOwner();
 		time_t seconds;
 		time(&seconds);
 		localtime_s(&lastTimestamp, &seconds);
 		//cout << "TravelcardReader::handleTravel - balance = " << card.getBalance() << "\n";
 		//cout << "TravelcardReader :: 2: card @ " << &card << "\n";
-		std::cout << "Saldo leimaajan handleTravel-metodissa = " << card.getBalance() << "\n";
 		return true;
 	}
-	std::cout << "Saldo leimaajan handleTravel-metodissa = " << card.getBalance() << "\n";
 	//cout << "TravelcardReader :: 2: card @ " << &card << "\n";
 	return false;
 }

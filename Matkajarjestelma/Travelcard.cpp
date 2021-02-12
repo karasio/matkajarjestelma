@@ -5,30 +5,22 @@ using namespace std;
 Travelcard::Travelcard()
 {
 	//std::cout << "NORMAL CONSTUCTOR\n";
-	cardOwner = new string("Haltijakohtainen kortti");
-	balance = new float(0.0);
+	cardOwner.reset(new string("Haltijakohtainen kortti"));
+	balance.reset(new float(0.0));
 }
 
-// tämä edelleen päin helvettiä, koska arvot mitä cardOwner & balancesta
-// kopioidaan on viitteitä, jotka tuhoutuu sen jälkeen kun tullaan handleTravelista
-// ulos
-Travelcard::Travelcard(const Travelcard& toBeCopied)
-{
-	//std::cout << "COPY CONSTUCTOR @"<< this << "\n";
-	//std::cout << "toBeCopied balance " << *(toBeCopied.balance) << "\n";
-	cardOwner = new string(*(toBeCopied.cardOwner));
-	balance = new float(*(toBeCopied.balance));
-	//std::cout << "this balance " << *balance << "\n";
-}
 
 Travelcard::~Travelcard()
 {
-	delete cardOwner;
-	delete balance;
+	cout << "Travelcard - Destructor - delete commands as comment!";
+	//delete cardOwner;
+	//delete balance;
 }
 
 void Travelcard::registerCard(string &owner)
 {
+	//cardOwner.reset(new string(owner));
+	//balance.reset(new float(0.0));
 	*cardOwner = owner;
 	*balance = 0;
 }
@@ -43,7 +35,6 @@ bool Travelcard::travel(Traveltype type)
 
 	if (*balance >= price) {
 		*balance -= price;
-		std::cout << "Saldo kortin travel-metodissa = " << *balance << "\n";
 		success = true;
 	}
 	return success;

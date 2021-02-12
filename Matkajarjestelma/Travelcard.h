@@ -10,11 +10,10 @@ using namespace std;
 class Travelcard
 {
 private:
-	string *cardOwner;
-	float *balance;
+	shared_ptr<string> cardOwner;
+	shared_ptr<float> balance;
 public:
 	Travelcard();
-	Travelcard(const Travelcard &toBeCopied);
 	~Travelcard();
 	void registerCard(string& owner);
 	bool travel(Traveltype type);		// VOI TESTATA if (tyyppi == HELSINKI)

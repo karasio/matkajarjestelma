@@ -22,11 +22,15 @@ void TravelEvent::print(int row)
 
 string TravelEvent::getEventString()
 {
-    string eventString = "Kortin haltija: " + lastUser + 
-        " -- Matkalippu ostettu: " +
-        to_string(lastTimestamp.tm_hour) + ":" + 
-        to_string(lastTimestamp.tm_min) + ":" + 
-        to_string(lastTimestamp.tm_sec) + "\n";
-    return eventString;
+    ostringstream oss;
+    oss << setfill('0') << setw(2) << lastTimestamp.tm_hour << ":"
+        << setfill('0') << setw(2) << lastTimestamp.tm_min << ":"
+        << setfill('0') << setw(2) << lastTimestamp.tm_sec << "\n";
+    //string eventString = "Kortin haltija: " + lastUser + 
+    //    " -- Matkalippu ostettu: " +
+    //    to_string(lastTimestamp.tm_hour) + ":" + 
+    //    to_string(lastTimestamp.tm_min) + ":" + 
+    //    to_string(lastTimestamp.tm_sec) + "\n";
+    return "Kortin haltija: " + lastUser +" -- Matkalippu ostettu: " + oss.str();
 }
 

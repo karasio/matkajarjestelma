@@ -55,10 +55,20 @@ bool Travelcardreader::operator>>(Travelcard& card)
 	return handleTravel(card, SEUTU);
 }
 
+void Travelcardreader::setMAX(int value)
+{
+	MAX = value;
+	events.resize(MAX);
+	for (int i = 0; i < MAX; i++)
+	{
+		events[i] = NULL;
+	}
+}
+
 ostream& operator<<(ostream& out, const Travelcardreader& reader)
 {
 	bool isAllNull = true;
-	out << reader.routeName  << '\n';
+	out << "Leimaaja operoi linjalla: " << reader.routeName  << '\n';
 	string travelEventString;
 
 	for (int i = 0; i < reader.MAX; i++)

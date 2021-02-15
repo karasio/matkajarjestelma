@@ -22,5 +22,6 @@ public:
 	bool operator<<(Travelcard& card);
 	bool operator>>(Travelcard& card);
 	friend ostream& operator<<(ostream& out, const Travelcardreader& reader);
+	void setMAX(int value);
 };
 

@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
 	int c;
 	string row;
 	float money;
+	int value;
 	//shared_ptr<Travelcard> card(new Travelcard);
 	Travelcard card;
 	Travelcardreader reader;
@@ -21,28 +22,16 @@ int main(int argc, char* argv[])
 	{
 		cout <<"\n-------------------Matkakortin testausvalikko--------------------";
 		cout <<"\n\n";
-		cout << "\tAlusta matkakortti";
-		cout << "\t\t\t\t1\n";
-		cout << "\tLataa matkakortti";
-		cout << "\t\t\t\t2\n";
-		cout << "\tMatkusta Helsingissä";
-		//gotoxy(indent, 4);
-		cout << "\t\t\t\t3\n";
-		cout << "\tMatkusta seudulla";
-		//gotoxy(indent, 5);
-		cout << "\t\t\t\t4\n";
-		cout << "\tTulosta kortin tiedot";
-		//gotoxy(indent, 6);
-		cout << "\t\t\t\t5\n";
-		cout << "\tTulosta leimaajan tiedot";
-		//gotoxy(indent, 7);
-		cout << "\t\t\t6\n";
-		cout << "\tLopeta";
-		//gotoxy(indent, 8);
-		cout << "\t\t\t\t\t\t7\n";
-		//gotoxy(8,10);
+		cout << "\tAlusta matkakortti\t\t\t\t1\n";
+		cout << "\tLataa matkakortti\t\t\t\t2\n";
+		cout << "\tMatkusta Helsingissä\t\t\t\t3\n";
+		cout << "\tMatkusta seudulla\t\t\t\t4\n";
+		cout << "\tTulosta kortin tiedot\t\t\t\t5\n";
+		cout << "\tTulosta leimaajan tiedot\t\t\t6\n";
+		cout << "\tMuuta tallennettavien matkojen määrää\t\t7\n";
+		cout << "\tLopeta\t\t\t\t\t\t8\n";
 		cout << "\n\tValintasi:";
-		//gotoxy(indent, 10);
+
 		c=getIntFromStream();
 		cout << "\n";
 		switch (c)
@@ -94,11 +83,23 @@ int main(int argc, char* argv[])
 				cin.get();
 				break;
 			case 7:
+				cout << "Kuinka monta matkaa tallennetaan lukijalle?\t";
+				value = getIntFromStream();
+				while (value < 0)
+				{
+					cout << "Anna positiivinen kokonaisluku.\n";
+					cout << "Kuinka monta matkaa tallennetaan lukijalle?\t";
+					value = getIntFromStream();
+				}
+				reader.setMAX(value);
+				cin.get();
+				break;
+			case 8:
 				cout << "Kiitos näkemiin!";
 				break;
 		}
 	}
-	while (c!=7);
+	while (c!=8);
 	return 0;
 }
 

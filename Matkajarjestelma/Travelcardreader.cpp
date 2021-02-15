@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 using namespace std;
 
 Travelcardreader::Travelcardreader()
@@ -12,6 +13,7 @@ Travelcardreader::Travelcardreader()
 	{
 		events[i] = NULL;
 	}
+	
 }
 
 Travelcardreader::~Travelcardreader()
@@ -35,8 +37,10 @@ bool Travelcardreader::handleTravel(Travelcard& card, Traveltype type)
 		delete events[eventAmount % MAX];
 		events[eventAmount % MAX] = newEvent;
 		eventAmount++;
+		p.changeTextColorAfterTravel(true);
 		return true;
 	}
+	p.changeTextColorAfterTravel(false);
 	return false;
 }
 

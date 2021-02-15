@@ -5,6 +5,7 @@ using namespace std;
 
 class Travelcard; // forward-m‰‰rittely, tarpeen jos kaksi luokkaa viittaavat toisiinsa
 class TravelEvent;
+class SuccessPanel;
 
 class Travelcardreader
 {
@@ -12,6 +13,7 @@ private:
 	vector<TravelEvent *> events;
 	string routeName;
 	int eventAmount;
+	SuccessPanel panel;
 public:
 	int MAX;
 	Travelcardreader();

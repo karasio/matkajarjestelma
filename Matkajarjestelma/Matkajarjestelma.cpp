@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 	//shared_ptr<Travelcard> card(new Travelcard);
 	Travelcard card;
 	Travelcardreader reader;
-
+	SuccessPanel panel;
 	do
 	{
 		cout <<"\n-------------------Matkakortin testausvalikko--------------------";
@@ -57,6 +57,7 @@ int main(int argc, char* argv[])
 				{
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
+				panel.changeToDefaultColor();
 				cout << "Kortin saldo: " << card.getBalance() << "\n";
 				cin.get();
 				break;
@@ -70,6 +71,7 @@ int main(int argc, char* argv[])
 				{
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
+				panel.changeToDefaultColor();
 				cout << "Kortin saldo: " << card.getBalance() << "\n";
 				cin.get();
 				break;

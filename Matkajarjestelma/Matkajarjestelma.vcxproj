@@ -82,14 +82,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gotoxy.h" />
+    <ClInclude Include="IdentityCard.h" />
     <ClInclude Include="IOHelper.h" />
     <ClInclude Include="Matkajarjestelma.h" />
+    <ClInclude Include="Owner.h" />
     <ClInclude Include="SuccessPanel.h" />
     <ClInclude Include="TravelEvent.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Travelcard.h" />
     <ClInclude Include="Travelcardreader.h" />
+    <ClInclude Include="Wallet.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="gotoxy.cpp" />

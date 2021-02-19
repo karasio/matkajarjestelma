@@ -21,6 +21,9 @@
 #include "IOHelper.h"
 #include "gotoxy.h"
 
+#include "Owner.h"
+#include "IdentityCard.h"
+#include "Wallet.h"
 #include "SuccessPanel.h"
 #include "Travelcard.h"
 #include "Travelcardreader.h"

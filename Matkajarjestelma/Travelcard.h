@@ -7,10 +7,10 @@ enum Traveltype { HELSINKI, SEUTU };			// lueteltu tietotyyppi
 
 using namespace std;
 
-class Travelcard
+class Travelcard : public Wallet, public IdentityCard
 {
 private:
-	shared_ptr<string> cardOwner;
+	//shared_ptr<string> cardOwner;		// periytyy Owner-yliluokalta Walletin ja IdentityCardin kautta
 	shared_ptr<float> balance;
 public:
 	Travelcard();

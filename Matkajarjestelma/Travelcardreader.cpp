@@ -37,10 +37,10 @@ bool Travelcardreader::handleTravel(Travelcard& card, Traveltype type)
 		delete events[eventAmount % MAX];
 		events[eventAmount % MAX] = newEvent;
 		eventAmount++;
-		p.changeTextColorAfterTravel(true);
+		panel.changeTextColorAfterTravel(true);
 		return true;
 	}
-	p.changeTextColorAfterTravel(false);
+	panel.changeTextColorAfterTravel(false);
 	return false;
 }
 

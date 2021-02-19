@@ -1,10 +1,11 @@
 #include "stdafx.h"
 using namespace std;
 
-TravelEvent::TravelEvent(string &name, struct tm &timestamp)
+TravelEvent::TravelEvent(string& name, tm& timestamp, Ticket* t)
 {
     lastTimestamp = timestamp;
     lastUser = name;
+    ticket = t;
 }
 
 TravelEvent::~TravelEvent()
@@ -25,12 +26,12 @@ string TravelEvent::getEventString()
     ostringstream oss;
     oss << setfill('0') << setw(2) << lastTimestamp.tm_hour << ":"
         << setfill('0') << setw(2) << lastTimestamp.tm_min << ":"
-        << setfill('0') << setw(2) << lastTimestamp.tm_sec << "\n";
+        << setfill('0') << setw(2) << lastTimestamp.tm_sec << "";
     //string eventString = "Kortin haltija: " + lastUser + 
     //    " -- Matkalippu ostettu: " +
     //    to_string(lastTimestamp.tm_hour) + ":" + 
     //    to_string(lastTimestamp.tm_min) + ":" + 
     //    to_string(lastTimestamp.tm_sec) + "\n";
-    return "Kortin haltija: " + lastUser +" -- Matkalippu ostettu: " + oss.str();
+    return "Kortin haltija: " + lastUser +" -- Matkalippu ostettu: " + oss.str() + " -- Lipputyyppi: " + ticket->ticketType + "\n";
 }
 

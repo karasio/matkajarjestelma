@@ -86,7 +86,9 @@
     <ClInclude Include="IOHelper.h" />
     <ClInclude Include="Matkajarjestelma.h" />
     <ClInclude Include="Owner.h" />
+    <ClInclude Include="SingleTicket.h" />
     <ClInclude Include="SuccessPanel.h" />
+    <ClInclude Include="Ticket.h" />
     <ClInclude Include="TravelEvent.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -98,6 +100,7 @@
     <ClCompile Include="gotoxy.cpp" />
     <ClCompile Include="IOHelper.cpp" />
     <ClCompile Include="Matkajarjestelma.cpp" />
+    <ClCompile Include="SingleTicket.cpp" />
     <ClCompile Include="SuccessPanel.cpp" />
     <ClCompile Include="TravelEvent.cpp" />
     <ClCompile Include="stdafx.cpp" />

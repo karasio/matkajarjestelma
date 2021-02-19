@@ -21,10 +21,12 @@
 #include "IOHelper.h"
 #include "gotoxy.h"
 
+#include "Ticket.h"
 #include "Owner.h"
 #include "IdentityCard.h"
 #include "Wallet.h"
 #include "SuccessPanel.h"
+#include "SingleTicket.h"
 #include "Travelcard.h"
 #include "Travelcardreader.h"
 #include "TravelEvent.h"

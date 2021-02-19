@@ -7,6 +7,7 @@ Travelcard::Travelcard()
 	//std::cout << "NORMAL CONSTUCTOR\n";
 	cardOwner.reset(new string("Haltijakohtainen kortti"));
 	balance.reset(new float(0.0));
+	ticketType = "Matkakortti";
 }
 
 
@@ -27,7 +28,7 @@ void Travelcard::registerCard(string &owner)
 
 bool Travelcard::travel(Traveltype type)
 {
-	bool success = false;
+	bool success = travelOk =  false;
 	float price = HELSINKIPRICE;
 	if (type) {
 		price = SEUTUPRICE;
@@ -35,7 +36,7 @@ bool Travelcard::travel(Traveltype type)
 
 	if (*balance >= price) {
 		*balance -= price;
-		success = true;
+		success = travelOk = true;
 	}
 	return success;
 }
@@ -46,7 +47,7 @@ float Travelcard::chargeCard(float amount)
 	return *balance;
 }
 
-string& Travelcard::getCardOwner()
+string Travelcard::getTicketOwner()
 {
 	return *cardOwner;
 }

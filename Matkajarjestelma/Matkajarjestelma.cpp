@@ -14,9 +14,10 @@ int main(int argc, char* argv[])
 	string row;
 	float money;
 	int value;
-	//shared_ptr<Travelcard> card(new Travelcard);
-	Travelcard card;
+	shared_ptr<Travelcard> card(new Travelcard);
+	//Travelcard card;
 	Travelcardreader reader;
+	shared_ptr<SingleTicket> singleTicket;
 	SuccessPanel panel;
 	do
 	{
@@ -24,12 +25,14 @@ int main(int argc, char* argv[])
 		cout <<"\n\n";
 		cout << "\tAlusta matkakortti\t\t\t\t1\n";
 		cout << "\tLataa matkakortti\t\t\t\t2\n";
-		cout << "\tMatkusta Helsingissä\t\t\t\t3\n";
-		cout << "\tMatkusta seudulla\t\t\t\t4\n";
-		cout << "\tTulosta kortin tiedot\t\t\t\t5\n";
-		cout << "\tTulosta leimaajan tiedot\t\t\t6\n";
-		cout << "\tMuuta tallennettavien matkojen määrää\t\t7\n";
-		cout << "\tLopeta\t\t\t\t\t\t8\n";
+		cout << "\tOsta kertalippu\t\t\t\t\t3\n";
+		cout << "\tMatkusta Helsingissä\t\t\t\t4\n";
+		cout << "\tMatkusta seudulla\t\t\t\t5\n";
+		cout << "\tMatkusta kertalipulla\t\t\t\t6\n";
+		cout << "\tTulosta kortin tiedot\t\t\t\t7\n";
+		cout << "\tTulosta leimaajan tiedot\t\t\t8\n";
+		cout << "\tMuuta tallennettavien matkojen määrää\t\t9\n";
+		cout << "\tLopeta\t\t\t\t\t\t0\n";
 		cout << "\n\tValintasi:";
 
 		c=getIntFromStream();
@@ -39,17 +42,35 @@ int main(int argc, char* argv[])
 			case 1:
 				cout << "Anna kortin omistajan nimi: ";
 				getline(cin, row);
-				card.registerCard(row);
+				card->registerCard(row);
 				break;
 			case 2:
 				cout << "Anna lisättävä saldo: ";
 				money = getFloatFromStream();
-				cout << "Kortin saldo: " << card.chargeCard(money) << "e";
+				cout << "Kortin saldo: " << card->chargeCard(money) << "e";
 				break;
 			case 3:
+				// kertalipun osto
+				if (singleTicket == NULL)
+				{
+					singleTicket.reset(new SingleTicket);
+					cout << "Kertalippu ostettu. Muista leimata sen matkakortinlukijassa ennen matkan alkamista.\n";
+				}
+				else if (!singleTicket->travelOk)		// ei voi tarkistaa, jos ei tiedä onko olemassa?
+				{
+					singleTicket.reset(new SingleTicket);
+					cout << "Kertalippu ostettu. Muista leimata sen matkakortinlukijassa ennen matkan alkamista.\n";
+				}
+				else
+				{
+					cout << "Sinulla on jo kertalippu\n";
+				}
+				cin.get();
+				break;
+			case 4:
 				cout << "Matkan hinta: " << HELSINKIPRICE << "e\n";
 				//cout << "Main: card @: " << &card << "\n";
-				if (reader << card)
+				if (reader << *card)
 				{
 					cout << "Hyvää matkaa!\n";
 				}
@@ -58,12 +79,12 @@ int main(int argc, char* argv[])
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
 				panel.changeToDefaultColor();
-				cout << "Kortin saldo: " << card.getBalance() << "\n";
+				cout << "Kortin saldo: " << card->getBalance() << "\n";
 				cin.get();
 				break;
-			case 4:
+			case 5:
 				cout << "Matkan hinta: " << SEUTUPRICE << "e\n";
-				if (reader >> card)
+				if (reader >> *card)
 				{
 					cout << "Hyvää matkaa!\n";
 				}
@@ -72,19 +93,32 @@ int main(int argc, char* argv[])
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
 				panel.changeToDefaultColor();
-				cout << "Kortin saldo: " << card.getBalance() << "\n";
-				cin.get();
-				break;
-			case 5:
-				cout << card;
+				cout << "Kortin saldo: " << card->getBalance() << "\n";
 				cin.get();
 				break;
 			case 6:
+				// kertalipulla matkustaminen
+				if (reader.handleTravel(*singleTicket, SEUTU))
+				{
+					cout << "Hyvää matkaa!\n";
+				}
+				else
+				{
+					cout << "Lippu ei ole voimassa, ole hyvä ja osta uusi.";
+				}
+				panel.changeToDefaultColor();
+				cin.get();
+				break;
+			case 7:
+				cout << *card;
+				cin.get();
+				break;
+			case 8:
 				//reader.print();
 				cout << reader;
 				cin.get();
 				break;
-			case 7:
+			case 9:
 				cout << "Kuinka monta matkaa tallennetaan lukijalle?\t";
 				value = getIntFromStream();
 				while (value < 0)
@@ -96,12 +130,12 @@ int main(int argc, char* argv[])
 				reader.setMAX(value);
 				cin.get();
 				break;
-			case 8:
+			case 0:
 				cout << "Kiitos näkemiin!";
 				break;
 		}
 	}
-	while (c!=8);
+	while (c!=0);
 	return 0;
 }
 

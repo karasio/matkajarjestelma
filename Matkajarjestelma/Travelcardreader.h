@@ -18,12 +18,13 @@ public:
 	int MAX;
 	Travelcardreader();
 	~Travelcardreader();
-	bool handleTravel(Travelcard &card, Traveltype type);
+	bool handleTravel(Ticket &card, Traveltype type);
 	string getRouteName();
 	void print();
 	bool operator<<(Travelcard& card);
 	bool operator>>(Travelcard& card);
 	friend ostream& operator<<(ostream& out, const Travelcardreader& reader);
 	void setMAX(int value);
+	void addEvent(Ticket& ticket);
 };
 

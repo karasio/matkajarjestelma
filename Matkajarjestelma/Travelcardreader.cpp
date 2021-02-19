@@ -24,20 +24,11 @@ Travelcardreader::~Travelcardreader()
 	}
 }
 
-bool Travelcardreader::handleTravel(Travelcard& card, Traveltype type)
+bool Travelcardreader::handleTravel(Ticket& ticket, Traveltype type)
 {
-	if (card.travel(type))
+	if (ticket.travel(type))
 	{
-		TravelEvent* newEvent;
-		struct tm timestamp;
-		time_t seconds;
-		time(&seconds);
-		localtime_s(&timestamp, &seconds);
-		newEvent = new TravelEvent(card.getCardOwner(), timestamp);
-		delete events[eventAmount % MAX];
-		events[eventAmount % MAX] = newEvent;
-		eventAmount++;
-		panel.changeTextColorAfterTravel(true);
+		addEvent(ticket);
 		return true;
 	}
 	panel.changeTextColorAfterTravel(false);
@@ -67,6 +58,20 @@ void Travelcardreader::setMAX(int value)
 	{
 		events[i] = NULL;
 	}
+}
+
+void Travelcardreader::addEvent(Ticket& ticket)
+{
+	TravelEvent* newEvent;
+	struct tm timestamp;
+	time_t seconds;
+	time(&seconds);
+	localtime_s(&timestamp, &seconds);
+	newEvent = new TravelEvent(ticket.getTicketOwner(), timestamp, &ticket);
+	delete events[eventAmount % MAX];
+	events[eventAmount % MAX] = newEvent;
+	eventAmount++;
+	panel.changeTextColorAfterTravel(true);
 }
 
 ostream& operator<<(ostream& out, const Travelcardreader& reader)

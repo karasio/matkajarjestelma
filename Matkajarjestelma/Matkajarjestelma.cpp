@@ -14,10 +14,10 @@ int main(int argc, char* argv[])
 	string row;
 	float money;
 	int value;
-	shared_ptr<Travelcard> card(new Travelcard);
-	//Travelcard card;
+	//shared_ptr<Travelcard> card(new Travelcard);
+	Travelcard card;
 	Travelcardreader reader;
-	shared_ptr<SingleTicket> singleTicket;
+	SingleTicket singleTicket;
 	SuccessPanel panel;
 	do
 	{
@@ -42,23 +42,18 @@ int main(int argc, char* argv[])
 			case 1:
 				cout << "Anna kortin omistajan nimi: ";
 				getline(cin, row);
-				card->registerCard(row);
+				card.registerCard(row);
 				break;
 			case 2:
 				cout << "Anna lisättävä saldo: ";
 				money = getFloatFromStream();
-				cout << "Kortin saldo: " << card->chargeCard(money) << "e";
+				cout << "Kortin saldo: " << card.chargeCard(money) << "e";
 				break;
 			case 3:
 				// kertalipun osto
-				if (singleTicket == NULL)
+				if (!singleTicket.travelOk)
 				{
-					singleTicket.reset(new SingleTicket);
-					cout << "Kertalippu ostettu. Muista leimata sen matkakortinlukijassa ennen matkan alkamista.\n";
-				}
-				else if (!singleTicket->travelOk)		// ei voi tarkistaa, jos ei tiedä onko olemassa?
-				{
-					singleTicket.reset(new SingleTicket);
+					singleTicket.travelOk = true;
 					cout << "Kertalippu ostettu. Muista leimata sen matkakortinlukijassa ennen matkan alkamista.\n";
 				}
 				else
@@ -70,7 +65,7 @@ int main(int argc, char* argv[])
 			case 4:
 				cout << "Matkan hinta: " << HELSINKIPRICE << "e\n";
 				//cout << "Main: card @: " << &card << "\n";
-				if (reader << *card)
+				if (reader << card)
 				{
 					cout << "Hyvää matkaa!\n";
 				}
@@ -79,12 +74,12 @@ int main(int argc, char* argv[])
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
 				panel.changeToDefaultColor();
-				cout << "Kortin saldo: " << card->getBalance() << "\n";
+				cout << "Kortin saldo: " << card.getBalance() << "\n";
 				cin.get();
 				break;
 			case 5:
 				cout << "Matkan hinta: " << SEUTUPRICE << "e\n";
-				if (reader >> *card)
+				if (reader >> card)
 				{
 					cout << "Hyvää matkaa!\n";
 				}
@@ -93,12 +88,12 @@ int main(int argc, char* argv[])
 					cout << "Kortilla ei ole riittävästi saldoa.\n";
 				}
 				panel.changeToDefaultColor();
-				cout << "Kortin saldo: " << card->getBalance() << "\n";
+				cout << "Kortin saldo: " << card.getBalance() << "\n";
 				cin.get();
 				break;
 			case 6:
 				// kertalipulla matkustaminen
-				if (reader.handleTravel(*singleTicket, SEUTU))
+				if (reader.handleTravel(singleTicket, SEUTU))
 				{
 					cout << "Hyvää matkaa!\n";
 				}
@@ -110,7 +105,7 @@ int main(int argc, char* argv[])
 				cin.get();
 				break;
 			case 7:
-				cout << *card;
+				cout << card;
 				cin.get();
 				break;
 			case 8:

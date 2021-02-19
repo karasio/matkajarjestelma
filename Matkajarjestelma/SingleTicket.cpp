@@ -3,7 +3,7 @@
 SingleTicket::SingleTicket()
 {
 	ticketType = "Kertalippu";
-	travelOk = true;
+	travelOk = false;
 }
 
 SingleTicket::~SingleTicket()

@@ -3,14 +3,15 @@
 
 using namespace std;
 
-class Travelcard; // forward-m‰‰rittely, tarpeen jos kaksi luokkaa viittaavat toisiinsa
 class TravelEvent;
+class Travelcard; // forward-m‰‰rittely, tarpeen jos kaksi luokkaa viittaavat toisiinsa
 class SuccessPanel;
 
 class Travelcardreader
 {
 private:
-	vector<TravelEvent *> events;
+	//vector<TravelEvent *> events;
+	deque <TravelEvent> events;
 	string routeName;
 	int eventAmount;
 	SuccessPanel panel;

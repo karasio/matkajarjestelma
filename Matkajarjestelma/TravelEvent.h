@@ -10,9 +10,10 @@ private:
 	struct tm lastTimestamp;
 	Ticket *ticket;
 public:
+	TravelEvent();
 	TravelEvent(string &name, struct tm &timestamp, Ticket *t);
 	~TravelEvent();
-	void print(int row);
+	void print();
 	string getEventString();
 };
 

@@ -8,20 +8,16 @@ Travelcardreader::Travelcardreader()
 	getline(cin, routeName);
 	eventAmount = 0;
 	MAX = 5;
-	events.resize(MAX);
-	for (int i = 0; i < MAX; i++)
-	{
-		events[i] = NULL;
-	}
-	
+	//events.resize(MAX);
+	//for (int i = 0; i < MAX; i++)
+	//{
+	//	events.push_front(new TravelEvent());
+	//}
 }
 
 Travelcardreader::~Travelcardreader()
 {
-	for (int i = 0; i < MAX; i++)
-	{
-		delete events[i];
-	}
+	events.clear();
 }
 
 bool Travelcardreader::handleTravel(Ticket& ticket, Traveltype type)
@@ -53,11 +49,9 @@ bool Travelcardreader::operator>>(Travelcard& card)
 void Travelcardreader::setMAX(int value)
 {
 	MAX = value;
-	events.resize(MAX);
-	for (int i = 0; i < MAX; i++)
-	{
-		events[i] = NULL;
-	}
+	//events.resize(MAX);
+	eventAmount = 0;
+	events.clear();
 }
 
 void Travelcardreader::addEvent(Ticket& ticket)
@@ -68,8 +62,13 @@ void Travelcardreader::addEvent(Ticket& ticket)
 	time(&seconds);
 	localtime_s(&timestamp, &seconds);
 	newEvent = new TravelEvent(ticket.getTicketOwner(), timestamp, &ticket);
-	delete events[eventAmount % MAX];
-	events[eventAmount % MAX] = newEvent;
+	//delete events[eventAmount % MAX];
+	//events[eventAmount % MAX] = newEvent;
+	events.push_front(*newEvent);
+	if (eventAmount >= MAX)
+	{
+		events.pop_back();
+	}
 	eventAmount++;
 	panel.changeTextColorAfterTravel(true);
 }
@@ -80,18 +79,18 @@ ostream& operator<<(ostream& out, const Travelcardreader& reader)
 	out << "Leimaaja operoi linjalla: " << reader.routeName  << '\n';
 	string travelEventString;
 
-	for (int i = 0; i < reader.MAX; i++)
-	{
-		if (reader.events[i] != NULL) {
-			out << reader.events[i]->getEventString();
-			isAllNull = false;
-		}
+	//for (int i = 0; i < reader.MAX; i++)
+	//{
+	//	if (reader.events[i] != NULL) {
+	//		out << reader.events[i]->getEventString();
+	//		isAllNull = false;
+	//	}
 
-		if (i == (reader.MAX - 1) && isAllNull)
-		{
-			out << "Ei leimaustietoja\n";
-		}
-	}
+	//	if (i == (reader.MAX - 1) && isAllNull)
+	//	{
+	//		out << "Ei leimaustietoja\n";
+	//	}
+	//}
 	return out;
 }
 
@@ -99,16 +98,13 @@ void Travelcardreader::print()
 {
 	bool isAllNull = true;
 	cout << "Linja " << routeName << "\n";
-	for (int i = 0; i < MAX; i++)
+
+	if (events.empty())
 	{
-		if (events[i] != NULL)
-		{
-			events[i]->print(i);
-			isAllNull = false;
-		}
-		if (i == (MAX-1) && isAllNull)
-		{
-			cout << "Ei leimaustietoja\n";
-		}
+		cout << "Ei leimaustietoja\n";
+	}
+	for (deque<TravelEvent>::iterator itr = events.begin(); itr != events.end(); itr++)
+	{
+		cout << itr->getEventString();
 	}
 }

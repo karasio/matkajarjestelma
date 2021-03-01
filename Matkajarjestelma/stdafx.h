@@ -16,6 +16,7 @@
 #include <time.h>
 #include <memory>
 #include <vector>
+#include <deque>
 #include <iomanip>
 
 #include "IOHelper.h"
@@ -28,5 +29,6 @@
 #include "SuccessPanel.h"
 #include "SingleTicket.h"
 #include "Travelcard.h"
-#include "Travelcardreader.h"
 #include "TravelEvent.h"
+#include "Travelcardreader.h"
+

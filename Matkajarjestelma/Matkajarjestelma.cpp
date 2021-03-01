@@ -109,8 +109,8 @@ int main(int argc, char* argv[])
 				cin.get();
 				break;
 			case 8:
-				//reader.print();
-				cout << reader;
+				reader.print();
+				//cout << reader;
 				cin.get();
 				break;
 			case 9:

@@ -1,6 +1,12 @@
 #include "stdafx.h"
 using namespace std;
 
+
+
+TravelEvent::TravelEvent()
+{
+}
+
 TravelEvent::TravelEvent(string& name, tm& timestamp, Ticket* t)
 {
     lastTimestamp = timestamp;
@@ -12,7 +18,7 @@ TravelEvent::~TravelEvent()
 {
 }
 
-void TravelEvent::print(int row)
+void TravelEvent::print()
 {
     cout << "Kortin haltija: " << lastUser << " -- Matkalippu ostettu: ";
     cout 
@@ -32,6 +38,6 @@ string TravelEvent::getEventString()
     //    to_string(lastTimestamp.tm_hour) + ":" + 
     //    to_string(lastTimestamp.tm_min) + ":" + 
     //    to_string(lastTimestamp.tm_sec) + "\n";
-    return "Kortin haltija: " + lastUser +" -- Matkalippu ostettu: " + oss.str() + " -- Lipputyyppi: " + ticket->ticketType + "\n";
+    return "Matkalippu ostettu: " + oss.str() + " -- Lipputyyppi: " + ticket->ticketType + " -- Kortin haltija : " + lastUser + "\n";
 }
 

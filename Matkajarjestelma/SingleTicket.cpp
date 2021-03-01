@@ -2,7 +2,7 @@
 
 SingleTicket::SingleTicket()
 {
-	ticketType = "Kertalippu";
+	ticketType = "Kertalippu ";
 	travelOk = false;
 }
 
@@ -22,5 +22,5 @@ bool SingleTicket::travel(Traveltype type)
 
 string SingleTicket::getTicketOwner()
 {
-	return "-";
+	return "---";
 }
